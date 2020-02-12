@@ -8,19 +8,19 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.js','.jsx'],
+        extensions: ['.js', '.jsx'],
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude:/node_modules/,
-                use:{
+                exclude: /node_modules/,
+                use: {
                     loader: "babel-loader"
                 }
             },
             {
-                test:/\.html$/,
+                test: /\.html$/,
                 use: [
                     {
                         loader: 'html-loader',
@@ -28,7 +28,7 @@ module.exports = {
                 ],
             },
             {
-                test:  /\.(s*)css$/,
+                test: /\.(s*)css$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader
@@ -37,6 +37,17 @@ module.exports = {
                     'sass-loader'
                 ],
             },
+            {
+                test: /\.(png|gif|jpg)$/,
+                use: [
+                    {
+                       'loader': 'file-loader', 
+                       options:{
+                           name: 'assets/[hash].[ext]',
+                       }
+                    }
+                ]
+            }
         ],
     },
     plugins: [
